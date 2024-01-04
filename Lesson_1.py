@@ -72,9 +72,17 @@ def min_list(list_func):
     return min_num
 
 # - створити функцію яка приймає ліст чисел та складає значення елементів ліста та повертає його.
+list_func1 = [1,2,3,4,5,6,7,8,9]
+def func_sum(list_func1):
+    sum_num = sum(list_func1)
+    return sum_num
 
 # - створити функцію яка приймає ліст чисел та повертає середнє арифметичне його значень.
+average_list = [5, 8,6,12, 13, 14, 15, 16, 17, 18, 19]
 
+def average(average_list):
+    length_list = len(average_list)
+    return sum(average_list) / length_list
 
 # 1)Дан list:
 list = [22, 3,5,2,8,2,-23, 8,23,5]
@@ -85,6 +93,20 @@ print(list1)
 list2 = set(list)
 print(list2)
 #   - замінити кожне 4-те значення на 'X'
+l1 = [22, 3,5,2,8,2,-23, 8,23,5]
+for i in range(3, len(l1), 4):
+    l1[i] = 'x'
+print(l1)
 # 2) вивести на екран пустий квадрат з "*" сторона якого вказана як агрумент функції
+len_side = 5
+def square (len_side):
+    for i in range(len_side):
+        if i == 0 or i == len_side - 1:
+            print('*'* len_side)
+    else:
+        if j == 0 or j == len_side - 1:
+            print(' *'+ '    ' +' ' *( len_side -2) +'*' )
+square(7)
+
 # 3) вывести табличку множення за допомогою цикла while
 # 4) переробити це завдання під меню
