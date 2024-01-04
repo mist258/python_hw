@@ -98,15 +98,16 @@ for i in range(3, len(l1), 4):
     l1[i] = 'x'
 print(l1)
 # 2) вивести на екран пустий квадрат з "*" сторона якого вказана як агрумент функції
-len_side = 5
+
 def square (len_side):
     for i in range(len_side):
         if i == 0 or i == len_side - 1:
             print('*'* len_side)
-    else:
-        if j == 0 or j == len_side - 1:
-            print(' *'+ '    ' +' ' *( len_side -2) +'*' )
-square(7)
+        else:
+            print('*' + ' ' * len_side + '*' )
+
+square(6)
 
 # 3) вывести табличку множення за допомогою цикла while
+
 # 4) переробити це завдання під меню
