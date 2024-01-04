@@ -34,26 +34,20 @@ print([num**2 for num in range(50) if num % 2 != 0])
 
 # function
 # - створити функцію яка виводить ліст
-def f_lst():
-    lst = [1,2,3,4,5,6,7,8,9]
-    return lst
-lst1 = f_lst()
-print(lst1)
+def print_list(lst):
+    for item in lst:
+        print(item)
 
 # - створити функцію яка приймає три числа та виводить та повертає найбільше.
-a = 5
-b = 95
-c = 12
-
 def f_num(a, b, c):
     num = max(a, b, c)
     print(num)
     return num
 
 # - створити функцію яка приймає будь-яку кількість чисел, повертає найменьше, а виводить найбільше
-def f_num2(a, b, c, d,f):
-    num1 = max(a, b, c,d, f)
-    num2 = min(a, b, c,d, f)
+def f_num2(*args):
+    num1 = max(*args)
+    num2 = min(*args)
     print(num1)
     return num2
 
@@ -110,4 +104,36 @@ square(6)
 
 # 3) вывести табличку множення за допомогою цикла while
 
+n = int(input('Enter a number: '))
+i = 1
+while i <= n:
+    j = 1
+    while j <= n:
+        print('{:3}.'.format(i*j), end=' ')
+        j += 1
+    print()
+    i += 1
 # 4) переробити це завдання під меню
+
+while True:
+    print('1.  вивести на екран пустий квадрат з "*" сторона якого вказана як агрумент функції')
+    print('2. знайти мін число')
+    print('3. видалити усі дублікати')
+    print('4. замінити кожне 4-те значення на X')
+    print('5.  Exit')
+
+    numb = input('Enter a number: ')
+
+    if numb == '1':
+        square(6)
+    elif numb == '2':
+        print(list1)
+    elif numb == '3':
+        print(list2)
+    elif numb == '4':
+        print(l1)
+    elif numb == '5':
+        print()
+    break
+
+
