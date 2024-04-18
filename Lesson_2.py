@@ -27,12 +27,19 @@ write_task()
 
 display_tasks()
 
-# 3) створити функцію котра буде повертати сумму розрядів числа у вигляді строки (також використовуемо типізацію)
-# Приклад:
-
-# expanded_form(12) # return '10 + 2'
-# expanded_form(42) # return '40 + 2'
-# expanded_form(70304) # return '70000 + 300 + 4'
-
 # 4)створити декоратор котрий буде підраховувати скільки разів була запущена функція продекорована цим декоратором,
 # та буде виводити це значення після виконання функцій
+
+
+def decor(func):
+    def wrapper(count):
+        count += 1
+        func(count)
+
+    return wrapper
+@decor
+def counting(count):
+    print(count)
+
+counting(0)
+counting(1)
