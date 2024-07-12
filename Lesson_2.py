@@ -1,45 +1,73 @@
 # 1)написати функцію на замикання котра буде в собі зберігати список справ, вам потрібно реалізувати два методи:
 # - перший записує в список нову справу
 # - другий повертає всі записи
-# 2) протипізувати перше завдання
-def tasks() -> callable:
-    list_tasks: list[str] = []
+from typing import Callable, Tuple
+
+
+def task_keeper() -> Tuple[Callable, Callable]:
+
+    tasks: list[str] = []
 
     def write_task() -> None:
-        nonlocal list_tasks
-        number_of_tasks: int = int(input("Enter number of tasks: "))
-        for i in range(number_of_tasks):
-            task: str = input("Enter any task:")
+        nonlocal tasks
+        while len(tasks) < 3:
+            write_task: str = input("Write a task: ")
+            tasks.append(write_task)
 
-            list_tasks.append(task)
+    def show_task() -> list[str]:
+        nonlocal tasks
+        print(tasks)
+        return tasks.copy()
 
-    def display_tasks() -> list[str]:
-        nonlocal list_tasks
-        print(list_tasks)
-        return list_tasks
-
-    return write_task, display_tasks
+    return write_task, show_task
 
 
-write_task, display_tasks = tasks()
-
+write_task, show_task = task_keeper()
 write_task()
+show_task()
 
-display_tasks()
+# 3) створити функцію котра буде повертати сумму розрядів числа у вигляді строки (також використовуемо типізацію)
+# Приклад:
+# expanded_form(12) # return '10 + 2'
+# expanded_form(42) # return '40 + 2'
+# expanded_form(70304) # return '70000 + 300 + 4'
+def expand_form(number: int) -> str:
+    new_number = str(number)
+    n = len(str(number))
+    var: list[str] = []
+    for i, elem in enumerate(new_number):
+        if elem != '0':
+            value = elem + '0' * (n - i - 1)
+            var.append(value)
 
-# 4)створити декоратор котрий буде підраховувати скільки разів була запущена функція продекорована цим декоратором,
+    return ' + '.join(var)
+
+
+print(expand_form(70304))
+
+# 4) створити декоратор котрий буде підраховувати скільки разів була запущена функція продекорована цим декоратором,
 # та буде виводити це значення після виконання функцій
 
+def decorator(func):
 
-def decor(func):
-    def wrapper(count):
+    count = 0
+
+    def wrapper(*args, **kwargs):
+        nonlocal count
         count += 1
-        func(count)
+        func(*args, **kwargs)
+        print(count)
 
     return wrapper
-@decor
-def counting(count):
-    print(count)
 
-counting(0)
-counting(1)
+
+@decorator
+def count():
+    print('Hello World')
+
+
+count()
+count()
+count()
+count()
+count()
