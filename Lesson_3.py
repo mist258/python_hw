@@ -148,34 +148,36 @@ class Magazine(Printable):
 class Main:
     printable_list: list[Book, Magazine] = []
 
-    def add(self, item):
+    @staticmethod
+    def add(item):
         if isinstance(item, (Book, Magazine)):
-            self.printable_list.append(item)
+            Main.printable_list.append(item)
 
-    def show_magazines(self):
-        for items in self.printable_list:
+    @classmethod
+    def show_all_magazines(cls):
+        for items in cls.printable_list:
             if isinstance(items, Book):
                 continue
             print(items)
 
-    def show_books(self):
-        for items in self.printable_list:
+    @classmethod
+    def show_all_books(cls):
+        for items in cls.printable_list:
             if isinstance(items, Magazine):
                 continue
             print(items)
 
 
-# Приклад:
-#
-# Main.add(Magazine('Magazine1'))
-# Main.add(Book('Book1'))
-# Main.add(Magazine('Magazine3'))
-# Main.add(Magazine('Magazine2'))
-# Main.add(Book('Book2'))
-#
-# Main.show_all_magazines()
+main = Main()
+Main.add(Magazine('Magazine1'))
+Main.add(Book('Book1'))
+Main.add(Magazine('Magazine3'))
+Main.add(Magazine('Magazine2'))
+Main.add(Book('Book2'))
+
+Main.show_all_magazines()
 # print('-' * 40)
-# Main.show_all_books()
+Main.show_all_books()
 #
 # для перевірки классів використовуємо метод isinstance, приклад:
 #
