@@ -7,51 +7,51 @@
 #   != площин на не рівність
 #   >, < меньше більше
 #   при виклику метода len() підраховувати сумму сторін
-# class Rectangle:
-#     def __init__(self, x, y):
-#         self.x = x
-#         self.y = y
-#         self.area = self.x * self.y
-#
-#     def __add__(self, other):
-#         return self.area + other.area
-#
-#     def __sub__(self, other):
-#         res = self.area - other.area
-#         if res < 0:
-#             raise ValueError("Area cannot be negative")
-#         return res
-#
-#     def __eq__(self, other):
-#         return self.area == other.area
-#
-#     def __ne__(self, other):
-#         return self.area != other.area
-#
-#     def __gt__(self, other):
-#         return self.area > other.area
-#
-#     def __lt__(self, other):
-#         return self.area < other.area
-#
-#     def __len__(self, other):
-#         return self.x + other.x, self.y + other.y
+class Rectangle:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.area = self.x * self.y
+
+    def __add__(self, other):
+        return self.area + other.area
+
+    def __sub__(self, other):
+        res = self.area - other.area
+        if res < 0:
+            raise ValueError("Area cannot be negative")
+        return res
+
+    def __eq__(self, other):
+        return self.area == other.area
+
+    def __ne__(self, other):
+        return self.area != other.area
+
+    def __gt__(self, other):
+        return self.area > other.area
+
+    def __lt__(self, other):
+        return self.area < other.area
+
+    def __len__(self, other):
+        return self.x + other.x, self.y + other.y
 
 
-# def main():
-#     rectangle1 = Rectangle(5, 8)
-#     rectangle2 = Rectangle(7, 9)
-#     print(rectangle1 + rectangle2)
-#     print(rectangle1.__len__(rectangle2))
-#     print(rectangle2 - rectangle1)
-#     print(rectangle1 > rectangle2)
-#     print(rectangle1 < rectangle2)
-#     print(rectangle1 == rectangle2)
-#     print(rectangle1 != rectangle2)
-#
-#
-# if __name__ == '__main__':
-#     main()
+def main():
+    rectangle1 = Rectangle(5, 8)
+    rectangle2 = Rectangle(7, 9)
+    print(rectangle1 + rectangle2)
+    print(rectangle1.__len__(rectangle2))
+    print(rectangle2 - rectangle1)
+    print(rectangle1 > rectangle2)
+    print(rectangle1 < rectangle2)
+    print(rectangle1 == rectangle2)
+    print(rectangle1 != rectangle2)
+
+
+if __name__ == '__main__':
+    main()
 
 
 # створити класс Human (name, age)
@@ -132,24 +132,37 @@ class Book(Printable):
     def __init__(self, name):
         self.name = name
 
+    def print(self):
+        return f'{self.name}'
+
 
 class Magazine(Printable):
 
     def __init__(self, name):
         self.name = name
 
+    def print(self):
+        return f'{self.name}'
+
 
 class Main:
     printable_list: list[Book, Magazine] = []
 
     def add(self, item):
-        pass
+        if isinstance(item, (Book, Magazine)):
+            self.printable_list.append(item)
 
     def show_magazines(self):
-        pass
+        for items in self.printable_list:
+            if isinstance(items, Book):
+                continue
+            print(items)
 
     def show_books(self):
-        pass
+        for items in self.printable_list:
+            if isinstance(items, Magazine):
+                continue
+            print(items)
 
 
 # Приклад:
